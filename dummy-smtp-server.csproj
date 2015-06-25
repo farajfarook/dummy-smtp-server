@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00272F25-E4B4-4610-AB3C-3209C00DA1B9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dummy_smtp_server</RootNamespace>
+    <AssemblyName>dummy-smtp-server</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\AbstractMessage.cs" />
+    <Compile Include="Server\AbstractSession.cs" />
+    <Compile Include="Server\ASCIISevenBitTruncatingEncoding.cs" />
+    <Compile Include="Server\AuthenticationCredentialsValidationEventArgs.cs" />
+    <Compile Include="Server\CommandEventArgs.cs" />
+    <Compile Include="Server\Connection.cs" />
+    <Compile Include="Server\ConnectionUnexpectedlyClosedException.cs" />
+    <Compile Include="Server\CurrentDateTimeProvider.cs" />
+    <Compile Include="Server\DataAccessMode.cs" />
+    <Compile Include="Server\DefaultServer.cs" />
+    <Compile Include="Server\DefaultServerBehaviour.cs" />
+    <Compile Include="Server\Extensions\Auth\AnonymousAuthenticationCredentials.cs" />
+    <Compile Include="Server\Extensions\Auth\AnonymousAuthenticationRequest.cs" />
+    <Compile Include="Server\Extensions\Auth\AnonymousMechanism.cs" />
+    <Compile Include="Server\Extensions\Auth\AnonymousMechanismProcessor.cs" />
+    <Compile Include="Server\Extensions\Auth\AuthenticationResult.cs" />
+    <Compile Include="Server\Extensions\Auth\AuthExtension.cs" />
+    <Compile Include="Server\Extensions\Auth\AuthExtensionProcessor.cs" />
+    <Compile Include="Server\Extensions\Auth\AuthMechanismMap.cs" />
+    <Compile Include="Server\Extensions\Auth\AuthMechanismProcessorStatus.cs" />
+    <Compile Include="Server\Extensions\Auth\AuthVerb.cs" />
+    <Compile Include="Server\Extensions\Auth\CramMd5AuthenticationCredentials.cs" />
+    <Compile Include="Server\Extensions\Auth\CramMd5AuthenticationRequest.cs" />
+    <Compile Include="Server\Extensions\Auth\CramMd5Mechanism.cs" />
+    <Compile Include="Server\Extensions\Auth\CramMd5MechanismProcessor.cs" />
+    <Compile Include="Server\Extensions\Auth\IAuthenticationCredentials.cs" />
+    <Compile Include="Server\Extensions\Auth\IAuthMechanism.cs" />
+    <Compile Include="Server\Extensions\Auth\IAuthMechanismProcessor.cs" />
+    <Compile Include="Server\Extensions\Auth\LoginAuthenticationCredentials.cs" />
+    <Compile Include="Server\Extensions\Auth\LoginMechanism.cs" />
+    <Compile Include="Server\Extensions\Auth\LoginMechanismProcessor.cs" />
+    <Compile Include="Server\Extensions\Auth\PlainAuthenticationCredentials.cs" />
+    <Compile Include="Server\Extensions\Auth\PlainMechanism.cs" />
+    <Compile Include="Server\Extensions\Auth\PlainMechanismProcessor.cs" />
+    <Compile Include="Server\Extensions\Auth\UsernameAndPasswordAuthenticationCredentials.cs" />
+    <Compile Include="Server\Extensions\Auth\UsernameAndPasswordAuthenticationRequest.cs" />
+    <Compile Include="Server\Extensions\EightBitMimeDataVerb.cs" />
+    <Compile Include="Server\Extensions\EightBitMimeExtension.cs" />
+    <Compile Include="Server\Extensions\ExtensionProcessor.cs" />
+    <Compile Include="Server\Extensions\IExtension.cs" />
+    <Compile Include="Server\Extensions\IExtensionProcessor.cs" />
+    <Compile Include="Server\Extensions\SizeExtension.cs" />
+    <Compile Include="Server\Extensions\StartTlsExtension.cs" />
+    <Compile Include="Server\Extensions\StartTlsVerb.cs" />
+    <Compile Include="Server\FileMessage.cs" />
+    <Compile Include="Server\FileSession.cs" />
+    <Compile Include="Server\IConnection.cs" />
+    <Compile Include="Server\IConnectionChannel.cs" />
+    <Compile Include="Server\ICurrentDateTimeProvider.cs" />
+    <Compile Include="Server\IEditableMessage.cs" />
+    <Compile Include="Server\IEditableSession.cs" />
+    <Compile Include="Server\IMessage.cs" />
+    <Compile Include="Server\IParameterProcessor.cs" />
+    <Compile Include="Server\IRandomIntegerGenerator.cs" />
+    <Compile Include="Server\IServer.cs" />
+    <Compile Include="Server\IServerBehaviour.cs" />
+    <Compile Include="Server\ISession.cs" />
+    <Compile Include="Server\MemoryMessage.cs" />
+    <Compile Include="Server\MemorySession.cs" />
+    <Compile Include="Server\MessageEventArgs.cs" />
+    <Compile Include="Server\Parameter.cs" />
+    <Compile Include="Server\ParameterParser.cs" />
+    <Compile Include="Server\ParameterProcessorMap.cs" />
+    <Compile Include="Server\Ports.cs" />
+    <Compile Include="Server\RandomIntegerGenerator.cs" />
+    <Compile Include="Server\Server.cs" />
+    <Compile Include="Server\ServerStopBehaviour.cs" />
+    <Compile Include="Server\ServerUtility.cs" />
+    <Compile Include="Server\SessionErrorType.cs" />
+    <Compile Include="Server\SessionEventArgs.cs" />
+    <Compile Include="Server\SmtpCommand.cs" />
+    <Compile Include="Server\SmtpResponse.cs" />
+    <Compile Include="Server\SmtpServerException.cs" />
+    <Compile Include="Server\StandardSmtpResponseCode.cs" />
+    <Compile Include="Server\TcpClientConnectionChannel.cs" />
+    <Compile Include="Server\Verbs\DataVerb.cs" />
+    <Compile Include="Server\Verbs\EhloVerb.cs" />
+    <Compile Include="Server\Verbs\HeloVerb.cs" />
+    <Compile Include="Server\Verbs\IVerb.cs" />
+    <Compile Include="Server\Verbs\IVerbMap.cs" />
+    <Compile Include="Server\Verbs\MailFromVerb.cs" />
+    <Compile Include="Server\Verbs\MailVerb.cs" />
+    <Compile Include="Server\Verbs\NoopVerb.cs" />
+    <Compile Include="Server\Verbs\QuitVerb.cs" />
+    <Compile Include="Server\Verbs\RcptToVerb.cs" />
+    <Compile Include="Server\Verbs\RcptVerb.cs" />
+    <Compile Include="Server\Verbs\RsetVerb.cs" />
+    <Compile Include="Server\Verbs\VerbMap.cs" />
+    <Compile Include="Server\Verbs\VerbWithSubCommands.cs" />
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Server\Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\icon-pause.png" />
+    <Content Include="Resources\icon-play.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
