@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Rnwood.SmtpServer;
 
-namespace dummy_smtp_server
+namespace Dummy.SmtpServer
 {
     public partial class FormMain : Form
     {

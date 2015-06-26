@@ -1,4 +1,4 @@
-﻿namespace dummy_smtp_server
+﻿namespace Dummy.SmtpServer
 {
     partial class FormMain
     {
@@ -61,7 +61,7 @@
             // 
             this.btnStart.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btnStart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnStart.Image = global::dummy_smtp_server.Properties.Resources.icon_play;
+            this.btnStart.Image = global::Dummy.SmtpServer.Properties.Resources.icon_play;
             this.btnStart.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(23, 22);
@@ -79,7 +79,7 @@
             // 
             this.btnStop.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btnStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnStop.Image = global::dummy_smtp_server.Properties.Resources.icon_pause;
+            this.btnStop.Image = global::Dummy.SmtpServer.Properties.Resources.icon_pause;
             this.btnStop.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(23, 22);
