@@ -1,6 +1,8 @@
 # Dummy SMTP Server
 This is a Dummy SMTP Server for Developers
 
+http://enbiso.github.io/dummy-smtp-server/
+
 **This application is under heavy development**
 
 *This application will not be able to send or recieve real application, but rather can be used as a dummy server to test your email sending applications which is running in the local host.*
