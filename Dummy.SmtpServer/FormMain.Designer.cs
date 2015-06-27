@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnStart = new System.Windows.Forms.ToolStripButton();
             this.lblServerStatus = new System.Windows.Forms.ToolStripLabel();
             this.btnStop = new System.Windows.Forms.ToolStripButton();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabMail = new System.Windows.Forms.TabPage();
+            this.lbxEmails = new System.Windows.Forms.ListBox();
             this.tabConsole = new System.Windows.Forms.TabPage();
             this.lbxConsole = new System.Windows.Forms.ListBox();
-            this.lbxEmails = new System.Windows.Forms.ListBox();
             this.toolStrip1.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabMail.SuspendLayout();
@@ -110,6 +111,17 @@
             this.tabMail.Text = "Emails Recieved";
             this.tabMail.UseVisualStyleBackColor = true;
             // 
+            // lbxEmails
+            // 
+            this.lbxEmails.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbxEmails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbxEmails.FormattingEnabled = true;
+            this.lbxEmails.Location = new System.Drawing.Point(3, 3);
+            this.lbxEmails.Name = "lbxEmails";
+            this.lbxEmails.Size = new System.Drawing.Size(267, 321);
+            this.lbxEmails.TabIndex = 0;
+            this.lbxEmails.DoubleClick += new System.EventHandler(this.lbxEmails_DoubleClick);
+            // 
             // tabConsole
             // 
             this.tabConsole.Controls.Add(this.lbxConsole);
@@ -131,16 +143,6 @@
             this.lbxConsole.Size = new System.Drawing.Size(267, 321);
             this.lbxConsole.TabIndex = 0;
             // 
-            // lbxEmails
-            // 
-            this.lbxEmails.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbxEmails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbxEmails.FormattingEnabled = true;
-            this.lbxEmails.Location = new System.Drawing.Point(3, 3);
-            this.lbxEmails.Name = "lbxEmails";
-            this.lbxEmails.Size = new System.Drawing.Size(267, 321);
-            this.lbxEmails.TabIndex = 0;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,8 +151,10 @@
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Dummy SMTP Server";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.toolStrip1.ResumeLayout(false);

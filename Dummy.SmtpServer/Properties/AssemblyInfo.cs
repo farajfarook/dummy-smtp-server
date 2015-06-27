@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("dummy-smtp-server")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Dummy SMTP Server")]
+[assembly: AssemblyDescription("Dummy SMTP Server for Developers")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("dummy-smtp-server")]
+[assembly: AssemblyCompany("enbiso")]
+[assembly: AssemblyProduct("Dummy.SmtpServer")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

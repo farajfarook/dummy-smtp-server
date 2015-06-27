@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,19 +14,21 @@ namespace Dummy.SmtpServer
 {
     public partial class FormMain : Form
     {
+        private const String SAVED_EMAIL_FOLDER = "Saved Emails";        
         private DefaultServer server;
-        private List<IMessage> messages = new List<IMessage>();
+        private List<SavedMessage> messages = new List<SavedMessage>();
 
         public FormMain()
         {
-            InitializeComponent();
-            server = new DefaultServer(25);            
-            server.MessageReceived += (s, ea) => messages.Add(ea.Message);
+            InitializeComponent();            
+            Rectangle workingArea = Screen.GetWorkingArea(this);
+            this.Location = new Point(workingArea.Right - Size.Width, workingArea.Bottom - Size.Height);
+            server = new DefaultServer(25);                        
             server.SessionStarted += new EventHandler<SessionEventArgs>(this.Server_SessionStarted);
             server.SessionCompleted += new EventHandler<SessionEventArgs>(this.Server_SessionCompleted);
             server.MessageReceived += new EventHandler<MessageEventArgs>(this.Server_MessageRecieved);
-            server.MessageCompleted += new EventHandler<MessageEventArgs>(this.Server_MessageCompleted); 
-            UpdateUI();
+            server.MessageCompleted += new EventHandler<MessageEventArgs>(this.Server_MessageCompleted);
+            StartServer();
         }
 
         private void Server_MessageCompleted(object sender, MessageEventArgs e)
@@ -36,8 +39,26 @@ namespace Dummy.SmtpServer
 
         private void Server_MessageRecieved(object sender, MessageEventArgs e)
         {
+            IMessage msg = e.Message;
+            String path = SaveToFile(msg);            
+            messages.Add(new SavedMessage(msg, path));
+
             ConsoleLog(e.Message.ToString() + " recieved");
+
             UpdateUI();
+        }
+
+        private string SaveToFile(IMessage msg)
+        {
+            if (!Directory.Exists(SAVED_EMAIL_FOLDER)) Directory.CreateDirectory(SAVED_EMAIL_FOLDER);
+
+            String path = ""; int fileNo = 0;
+            do path = SAVED_EMAIL_FOLDER + "\\" + msg.ReceivedDate.ToString(@"hh_mm_ss") + "_" + (fileNo++) + ".msg"; while (File.Exists(path));
+
+            StreamReader dataReader = new StreamReader(msg.GetData());
+            String data = dataReader.ReadToEnd();
+            File.WriteAllText(path, data);
+            return path;
         }
 
         private void Server_SessionCompleted(object sender, SessionEventArgs e)
@@ -88,8 +109,19 @@ namespace Dummy.SmtpServer
             lblServerStatus.Text = message;
             ConsoleLog(message);
 
+            if (lbxEmails.InvokeRequired) lbxEmails.Invoke(new MethodInvoker(updateEmailList));
+            else updateEmailList();            
+        }
+
+        private void updateEmailList()        {
             lbxEmails.Items.Clear();
-            messages.ForEach((msg) => lbxEmails.Items.Insert(0, msg.ToString()));            
+            messages.ForEach((msg) =>
+            {
+                String title = msg.Message.ReceivedDate.ToString(@"hh\:mm\:ss") + ", To: ";                
+                foreach (String to in msg.Message.To) { title += to + ","; }
+                title = title.Remove(title.Length - 1);
+                lbxEmails.Items.Insert(0, title);
+            });
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -100,6 +132,19 @@ namespace Dummy.SmtpServer
         private void btnStop_Click(object sender, EventArgs e)
         {
             StopServer();
+        }
+
+        private void lbxEmails_DoubleClick(object sender, EventArgs e)
+        {
+            int index = lbxEmails.SelectedIndex;
+            if(index < 0) return;
+
+            SavedMessage msg = messages[messages.Count - (index + 1)];
+            if (File.Exists(msg.Path))
+            {
+                msg.Path = SaveToFile(msg.Message);
+            }
+            System.Diagnostics.Process.Start(msg.Path);
         }
     }
 }
